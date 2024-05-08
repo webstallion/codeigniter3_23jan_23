@@ -13,7 +13,6 @@ class Test_api extends RestController {
 		$this->load->view('api_view');
 	}
 
-
 	public function index2_get(){
 		$api_url='http://localhost/codiegniter3/API/index2';
 		$api_key="pawan@123";

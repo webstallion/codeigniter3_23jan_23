@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Interview extends CI_Controller {
 	function __construct() { 
@@ -26,5 +26,41 @@ class Interview extends CI_Controller {
 		// 	echo 'false';
 		// }
 	}
- 
+
+	public function variable(){
+		$php="Program";
+		$call="php";
+		echo $$call;
+	}
+
+	public function phpErrors(){
+		$x=10;
+		echo $y;
+	}
+
+	function tryCatch($n){
+		try{
+			if($n<=0){
+				throw new Exception("Enter the valid number.");
+			}
+			$div=2 / $n;
+			echo $div;
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	tryCatch(2);
+
+	function array_sorting(){
+		$food= array('orange', 'banana', 'grapes', 'apple');
+		dump($food);
+		krsort($food);
+		dump($food);
+	}
+
+	public function error_handling(){
+		log_message('error', 'error message in this line');
+		log_message('debug', 'debug message in this line');
+		log_message('info', 'Index method called');
+	}
 }

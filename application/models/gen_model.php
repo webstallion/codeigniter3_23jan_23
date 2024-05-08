@@ -1,6 +1,16 @@
 <?php
 	//individual_p1
 	class Gen_model extends  CI_Model {
+		public function get_stored_procedure_14_july1(){
+			$stored_procedure = "CALL employeesList()";
+			$data=	$this->db->query($stored_procedure);
+			return $data->result(); 
+		}
+		public function get_stored_procedure_17_july1(){
+			$stored_procedure = "CALL employeesList2()";
+			$data=	$this->db->query($stored_procedure);
+			return $data->result(); 
+		}
 		public function get_stored_procedure(){
 			$stored_procedure = "CALL getemployee_proc()";
 			$data=	$this->db->query($stored_procedure);
@@ -17,7 +27,7 @@
 			return $data->result(); 
 		}
 		public function get_stored_procedure4(){
-			$stored_procedure = "CALL getProc1(1,@ename)";
+			$stored_procedure = "CALL getProc1(24,@ename)";
 			$data=	$this->db->query($stored_procedure);
 			$data1=	$this->db->query('SELECT @ename');
 			return $data1->row(); 
@@ -60,7 +70,7 @@
     	return true;
 		}
 		public function get_all_data3(){
-			$data=$this->db->query("SELECT deptID, SUM(`salary`) FROM `employee` GROUP BY `deptID`");
+			$data=$this->db->query("SELECT deptID, SUM(`salary`) as Sallary FROM `employee` GROUP BY `deptID`");
 			return $data->result();
 		}
 
@@ -79,7 +89,7 @@
 			return $data->result();
 		}		
 		public function get_all_data7(){
-			$data=$this->db->query("SELECT deptID,joinYear, count(`deptID`) as TotalEmp FROM `employee` GROUP BY `joinYear`");
+			$data=$this->db->query("SELECT joinYear, count(`deptID`) as TotalEmp FROM `employee` GROUP BY `joinYear`");
 			return $data->result();
 		}
 
@@ -89,12 +99,12 @@
 		}
 
 		public function get_all_data9(){
-			$data=$this->db->query("SELECT Max(`salary`) as maxsal FROM `employee`");
+			$data=$this->db->query("SELECT deptID, Max(`salary`) as maxsal FROM `employee` GROUP BY `deptID`");
 			return $data->result();
 		}
 
 		public function get_all_data10(){
-			$data=$this->db->query("SELECT Max(`salary`) as maxsal FROM `employee` WHERE salary Not in(SELECT Max(`salary`) as maxsal FROM `employee`)");
+			$data=$this->db->query("SELECT Max(`salary`) as maxsal FROM `employee1` WHERE salary Not in(SELECT Max(`salary`) as maxsal FROM `employee`)");
 			return $data->result();
 		}
 	}
